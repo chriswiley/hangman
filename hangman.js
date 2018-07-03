@@ -64,7 +64,9 @@ Hangman.prototype.gameStatus = function () {
   if (this.numberOfGuesses === 0) {
     this.status = 'Failed'
     console.log(this.status)
-    return guessesLeft.innerHTML = `<p style="color:red;font-size:3em">You have lost the game!</p>`
+    window.removeEventListener('keypress', _keyPress)
+    return guessesLeft.innerHTML = `<p style="color:red;font-size:3em">You have lost the game!</p>
+    <p style="color:blue;font-size:2em">The word was ${this.wordToGuess.join('')}`
   }
 
   this.wordToGuess.forEach((a) => this.guessedLetters.forEach((b) => {
@@ -76,6 +78,8 @@ Hangman.prototype.gameStatus = function () {
   if (finalGuess.join('') === this.wordToGuess.join('')) {
     guessesLeft.innerHTML = `<p style="color:green; font-size:3em;">You Won the Game!!!!</p>`
     this.status = 'finished'
+    window.removeEventListener('keypress', _keyPress)
+
 
   }
   console.log(this.status)
