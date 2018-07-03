@@ -13,6 +13,7 @@ const Hangman = function (wordToGuess, numberOfGuesses) {
 
 Hangman.prototype.getPuzzle = function () {
   wrongGuess.innerHTML = ''
+
   let build = '<h2>'
   const guessedLettersLowerCase = this.guessedLetters.map((letter) => letter.toLowerCase())
 
@@ -25,7 +26,9 @@ Hangman.prototype.getPuzzle = function () {
     }
   })
   build += `</h2>`
+
   guessesLeft.innerHTML = `<p style="color:${this.numberOfGuesses > 1 ? 'blue' : 'red'}; ${this.numberOfGuesses <= 1 ? 'font-size:2em' : ''}">You have ${this.numberOfGuesses} guess${this.numberOfGuesses === 1 ? '' : 'es'} remaining</p>`
+
   this.gameStatus()
   return puzzleHTML.innerHTML = build
 }
@@ -33,11 +36,14 @@ Hangman.prototype.getPuzzle = function () {
 Hangman.prototype.makeGuess = function () {
   const alreadyGuessed = `<p style="color:red;font-size:3em">You have already guessed that letter. Try again.</p>`
   const guesses = Array.from(arguments)
+
   guesses.forEach(guess => {
     guess = guess.toLowerCase()
+
     const isUnique = !this.guessedLetters.includes(guess)
     const isBadGuess = !this.wordToGuess.includes(guess)
     const isGoodGuess = this.wordToGuess.includes(guess)
+
     if (isUnique && isBadGuess) {
       this.guessedLetters.push(guess)
       this.numberOfGuesses--
@@ -54,16 +60,19 @@ Hangman.prototype.makeGuess = function () {
 
 Hangman.prototype.gameStatus = function () {
   const finalArray = []
+
   if (this.numberOfGuesses === 0) {
     this.status = 'Failed'
     console.log(this.status)
     return guessesLeft.innerHTML = `<p style="color:red;font-size:3em">You have lost the game!</p>`
   }
-  this.wordToGuess.forEach((e1) => this.guessedLetters.forEach((e2) => {
-    if (e1 === e2) {
-      finalArray.push(e1)
+
+  this.wordToGuess.forEach((a) => this.guessedLetters.forEach((b) => {
+    if (a === b) {
+      finalArray.push(a)
     }
   }))
+
   if (finalArray.join('') === this.wordToGuess.join('')) {
     guessesLeft.innerHTML = `<p style="color:green; font-size:3em;">You Won the Game!!!!</p>`
     this.status = 'finished'
