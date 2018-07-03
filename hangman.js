@@ -59,7 +59,7 @@ Hangman.prototype.makeGuess = function () {
 }
 
 Hangman.prototype.gameStatus = function () {
-  const finalArray = []
+  const finalGuess = []
 
   if (this.numberOfGuesses === 0) {
     this.status = 'Failed'
@@ -69,11 +69,11 @@ Hangman.prototype.gameStatus = function () {
 
   this.wordToGuess.forEach((a) => this.guessedLetters.forEach((b) => {
     if (a === b) {
-      finalArray.push(a)
+      finalGuess.push(a)
     }
   }))
 
-  if (finalArray.join('') === this.wordToGuess.join('')) {
+  if (finalGuess.join('') === this.wordToGuess.join('')) {
     guessesLeft.innerHTML = `<p style="color:green; font-size:3em;">You Won the Game!!!!</p>`
     this.status = 'finished'
 
