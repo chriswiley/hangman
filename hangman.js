@@ -26,13 +26,12 @@ Hangman.prototype.getPuzzle = function () {
   })
   build += `</h2>`
   guessesLeft.innerHTML = `<p style="color:${this.numberOfGuesses > 1 ? 'blue' : 'red'}; ${this.numberOfGuesses <= 1 ? 'font-size:2em' : ''}">You have ${this.numberOfGuesses} guess${this.numberOfGuesses === 1 ? '' : 'es'} remaining</p>`
-  console.log(this.status)
+  this.gameStatus()
   return puzzleHTML.innerHTML = build
 }
 
 Hangman.prototype.makeGuess = function () {
   const alreadyGuessed = `<p style="color:red;font-size:3em">You have already guessed that letter. Try again.</p>`
-  // console.log('starting guesses: ', this.numberOfGuesses)
   const guesses = Array.from(arguments)
   guesses.forEach(guess => {
     guess = guess.toLowerCase()
@@ -52,3 +51,25 @@ Hangman.prototype.makeGuess = function () {
     }
   })
 }
+
+Hangman.prototype.gameStatus = function () {
+  const finalArray = []
+  if (this.numberOfGuesses === 0) {
+    this.status = 'Failed'
+    console.log(this.status)
+    return guessesLeft.innerHTML = `<p style="color:red;font-size:3em">You have lost the game!</p>`
+  }
+  this.wordToGuess.forEach((e1) => this.guessedLetters.forEach((e2) => {
+    if (e1 === e2) {
+      finalArray.push(e1)
+    }
+  }))
+  if (finalArray.join('') === this.wordToGuess.join('')) {
+    guessesLeft.innerHTML = `<p style="color:green; font-size:3em;">You Won the Game!!!!</p>`
+    this.status = 'finished'
+
+  }
+  console.log(this.status)
+
+}
+
