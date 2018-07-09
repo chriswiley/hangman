@@ -80,4 +80,11 @@ class Hangman {
     }
     console.log(this.status)
   }
+  // TODO: make statusMessage hold the status' from above then follow challenge
+  statusMessage() {
+    return guessesLeft.innerHTML = `<p style="color:red;font-size:3em">You have lost the game!</p>
+        <p style="color:blue;font-size:2em">The word was "${this.wordToGuess.join('')}"`
+
+    guessesLeft.innerHTML = `<p style="color:green; font-size:3em;">You Won the Game!!!!</p>`
+  }
 }
