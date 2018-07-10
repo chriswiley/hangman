@@ -10,6 +10,11 @@ class Hangman {
     this.numberOfGuesses = numberOfGuesses
     this.status = 'playing'
     this.guessedLetters = []
+    this.wordToGuess.forEach(letter => {
+      if (letter === ' ') {
+        this.guessedLetters.push(letter)
+      }
+    })
   }
   getPuzzle() {
     wrongGuess.innerHTML = ''
@@ -18,6 +23,7 @@ class Hangman {
     const guessedLettersLowerCase = this.guessedLetters.map((letter) => letter.toLowerCase())
 
     this.wordToGuess.forEach((puzzle) => {
+
       if (guessedLettersLowerCase.includes(puzzle) || puzzle === ' ') {
 
         build += `${puzzle}`
@@ -26,7 +32,7 @@ class Hangman {
       }
     })
     build += `</h2>`
-
+    console.log('here: ', this.guessedLetters)
     guessesLeft.innerHTML = `<p style="color:${this.numberOfGuesses > 1 ? 'blue' : 'red'}; ${this.numberOfGuesses <= 1 ? 'font-size:2em' : ''}">You have ${this.numberOfGuesses} guess${this.numberOfGuesses === 1 ? '' : 'es'} remaining</p>`
 
     this.gameStatus()
@@ -80,11 +86,5 @@ class Hangman {
     }
     console.log(this.status)
   }
-  // TODO: make statusMessage hold the status' from above then follow challenge
-  statusMessage() {
-    return guessesLeft.innerHTML = `<p style="color:red;font-size:3em">You have lost the game!</p>
-        <p style="color:blue;font-size:2em">The word was "${this.wordToGuess.join('')}"`
 
-    guessesLeft.innerHTML = `<p style="color:green; font-size:3em;">You Won the Game!!!!</p>`
-  }
 }

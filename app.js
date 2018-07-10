@@ -1,4 +1,4 @@
-const first = new Hangman('Cat', 3)
+const first = new Hangman('Car parts', 3)
 
 first.getPuzzle()
 
