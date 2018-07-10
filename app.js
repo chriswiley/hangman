@@ -28,3 +28,25 @@ request.addEventListener('readystatechange', (e) => {
 
 request.open('GET', 'http://puzzle.mead.io/puzzle?wordCount=3')
 request.send()
+
+
+// api for countries
+
+const url = 'http://restcountries.eu/rest/v2/all'
+const countryCode = "US"
+const usa = new XMLHttpRequest()
+
+usa.addEventListener('readystatechange', (e) => {
+  if (e.target.readyState === 4 && e.target.status === 200) {
+    const countries = JSON.parse(e.target.responseText)
+
+    const myCountry = countries.find((country => country.alpha2Code === countryCode))
+    console.log('myCountry: ', myCountry.name)
+
+  } else if (e.target.readyState === 4) {
+    console.log('An error has occured.')
+  }
+})
+
+usa.open('GET', url)
+usa.send()
