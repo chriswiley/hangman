@@ -32,7 +32,6 @@ class Hangman {
       }
     })
     build += `</h2>`
-    console.log('here: ', this.guessedLetters)
     guessesLeft.innerHTML = `<p style="color:${this.numberOfGuesses > 1 ? 'blue' : 'red'}; ${this.numberOfGuesses <= 1 ? 'font-size:2em' : ''}">You have ${this.numberOfGuesses} guess${this.numberOfGuesses === 1 ? '' : 'es'} remaining</p>`
 
     this.gameStatus()
