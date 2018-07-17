@@ -21,13 +21,8 @@ getPuzzle((error, puzzle) => {
 })
 
 
-// getPuzzle((error, puzzle) => {
-//     if (error) {
-//         console.log(`Error: ${error}`)
-//     } else {
-//         console.log(puzzle)
-//     }
-// })
+
+
 
 // Making an HTTP request
 

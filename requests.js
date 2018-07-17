@@ -16,4 +16,3 @@ const getPuzzle = (callback) => {
   request.send()
 }
 
-
