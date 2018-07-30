@@ -14,17 +14,37 @@ window.addEventListener('keypress', (e) => {
 
 getPuzzle('2').then((puzzle) => {
   console.log(puzzle)
-}, (err) => {
-  console.log(`Error: ${err}`)
-})
-
-getCountry('mx').then((country) => {
-  console.log(country.name)
-}, (err) => {
+}).catch((err) => {
   console.log(`Error: ${err}`)
 })
 
 
-// Making an HTTP request
+getLocation().then((location) => {
+  console.log(`You are located at ${location.city}, ${location.region} in the ${location.country}.`)
+  return getCountry(location.country)
+}).then((country) => {
+  console.log(` Which is the ${country.name}`)
+}).catch((err) => console.log(`Error: ${err}`))
 
 
+
+// getCountry('us').then((country) => {
+            //   console.log(country.name)
+            // }).catch((err) => {
+            //   console.log(`Error: ${err}`)
+            // })
+
+            // fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
+            //   if (response.status === 200) {
+            //     return response.json()
+            //   } else {
+            //     throw new Error('Unable to fetch the puzzle')
+            //   }
+            // }).then((data) => {
+            //   console.log(data.puzzle)
+            // }).catch((error) => {
+            //   console.log(error)
+            // })
+// getLocation().then((location) => {
+//   console.log(`You are located at ${location.city}, ${location.region} in the ${location.country}.`)
+// }).catch((err) => console.log(`Error: ${err}`))
