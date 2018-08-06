@@ -11,12 +11,14 @@ window.addEventListener('keypress', (e) => {
 })
 
 const render = () => {
-  let puzzleHTML
   puzzleEl.innerHTML = ''
   guessesEl.textContent = game1.statusMessage
 
-  puzzleHTML = game1.puzzle.split('').map((letter => `<span>${letter}</span>`))
-  puzzleEl.innerHTML = puzzleHTML.join('')
+  game1.puzzle.split('').forEach((letter) => {
+    const letterEl = document.createElement('span')
+    letterEl.textContent = letter
+    puzzleEl.appendChild(letterEl)
+  })
 }
 
 const startGame = async () => {
